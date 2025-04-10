@@ -1,5 +1,5 @@
 # Codespaces
---8<-- "snippets/codespaces.js"
+--8<-- "snippets/3-codespaces.js"
 
 ## 1. Launch Codespace
 
@@ -81,5 +81,5 @@ exposeTodoApp(){
 }
 ```
 <div class="grid cards" markdown>
-- [Let's start our Bug hunting quest:octicons-arrow-right-24:](1-bug-clear-completed.md)
+- [Let's start our Bug hunting quest:octicons-arrow-right-24:](4-content.md)
 </div>
