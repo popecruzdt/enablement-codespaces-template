@@ -17,6 +17,13 @@ All the MD files are under the **docs** folder. In the main README.md file you w
 Snippets allow you to reuse text, banners, code or pieces of code.
 
 This is a snippet with an admonition:
+
+```bash
+
+--8<-- "snippets/view-code.md"
+
+```
+
 --8<-- "snippets/view-code.md"
 
 ### Admonitions

@@ -25,5 +25,4 @@ In this tutorial we'll learn:
     In this tutorial we will learn how easy it is to create an enablement using codespaces and a Kubernetes cluster!
 
 <div class="grid cards" markdown>
-- [Yes! let's begin :octicons-arrow-right-24:](2-getting-started.md)
-</div>
+- [Yes! let's begin :octicons-arrow-right-24:]git 
