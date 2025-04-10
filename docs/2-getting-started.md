@@ -5,12 +5,9 @@
 In here you place the prerequisites and everything that is needed before launching the codespace.
 
 
-bla bla...
 
 
-
-
-
+As a Professor I highly recommend to install VSCode locally and always open the devcontainer from it, specially since we'll be using some plugins for enhancing the productivity. 
 
 
 !!! tip "Let's launch the Codespace"

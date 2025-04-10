@@ -11,7 +11,7 @@ createKindCluster
 
 installK9s
 
-#TODO: BeforGoLive: this is only needed for professors to have the Mkdocs live in the container
+#TODO: BeforeGoLive: uncomment this. This is only needed for professors to have the Mkdocs live in the container
 installMkdocs
 
 # Dynatrace Credentials are read and saved as a configmap for ease of use
@@ -61,7 +61,7 @@ else
 
     # Your content here
     printInfo "Sending BizEvent to track usage of $RepositoryName"
-    #TODO: Uncomment this line before goLive
+    #TODO: BeforeGoLive: Uncomment, this will post a BizEvent to keep track of instantiations
     #postCodespaceTracker $RepositoryName
     
     printInfo "Finished creating devcontainer"

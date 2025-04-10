@@ -43,8 +43,6 @@ postCodespaceTracker(){
   else
     namespace_filter="demo-placeholder"
   fi
-  #Creation Ping
-  # TODO: Uncomment and update the PLACEHOLDER when you're ready to go live
   curl -X POST https://grzxx1q7wd.execute-api.us-east-1.amazonaws.com/default/codespace-tracker \
   -H "Content-Type: application/json" \
   -d "{
@@ -328,7 +326,7 @@ saveReadCredentials() {
 
 }
 
-# TODO: Clean up this mess
+# FIXME: Clean up this mess
 dynatraceEvalReadSaveCredentials() {
   printInfoSection "Dynatrace evaluating and reading/saving Credentials"
   if [[ -n "${DT_TENANT}" && -n "${DT_INGEST_TOKEN}" ]]; then
@@ -382,8 +380,8 @@ deployCloudNative() {
     # We wait for 5 seconds for the pods to be scheduled, otherwise it will mark it as passed since the pods have not been scheduled
     sleep 5
     waitForAllPods dynatrace
-    #TODO: Verify dependency of AG and OS being ready.
-    waitForAllReadyPods dynatrace
+    #if the app needs the AG or OS agent for some reason, then you'll need to wait for AG/OS to be ready, this function does that.
+    #waitForAllReadyPods dynatrace
   else
     printInfo "Not deploying the Dynatrace Operator, no credentials found"
   fi
@@ -396,7 +394,7 @@ deployApplicationMonitoring() {
     kubectl -n dynatrace wait pod --for=condition=ready --selector=app.kubernetes.io/name=dynatrace-operator,app.kubernetes.io/component=webhook --timeout=300s
 
     kubectl -n dynatrace apply -f $CODESPACE_VSCODE_FOLDER/.devcontainer/yaml/gen/dynakube-applicationmonitoring.yaml
-    #TODO: When deploying in AppOnly we need to capture the logs, either with log module or FluentBit
+    #FIXME: When deploying in AppOnly we need to capture the logs, either with log module or FluentBit
     waitForAllPods dynatrace
   else
     printInfo "Not deploying the Dynatrace Operator, no credentials found"
@@ -407,7 +405,7 @@ undeployDynakubes() {
     printInfoSection "Undeploying Dynakubes, OneAgent installation from Workernode if installed"
 
     kubectl -n dynatrace delete dynakube --all
-    #TODO: fix this
+    #FIXME: Test uninstalling Dynatracem good when changing monitoring modes. 
     #kubectl -n dynatrace wait pod --for=condition=delete --selector=app.kubernetes.io/name=oneagent,app.kubernetes.io/managed-by=dynatrace-operator --timeout=300s
     sudo bash /opt/dynatrace/oneagent/agent/uninstall.sh 2>/dev/null
 }
@@ -437,7 +435,7 @@ dynatraceDeployOperator() {
     deployOperatorViaHelm
     waitForAllPods dynatrace
 
-    #TODO: Fix this 
+    #FIXME: Add Ingress Nginx instrumentation and always expose in a port so all apps have RUM regardless of technology
     #printInfoSection "Instrumenting NGINX Ingress"
     #bashas "cd $K8S_PLAY_DIR/apps/nginx && bash instrument-nginx.sh"
 
@@ -502,13 +500,13 @@ deployTodoApp(){
 
 }
 
-exposeTodoApp(){
-  printInfo "Exposing Todo App in your dev.container"
+exposeApp(){
+  printInfo "Exposing App in your dev.container"
   nohup kubectl port-forward service/todoapp 8080:8080  -n todoapp --address="0.0.0.0" > /tmp/kubectl-port-forward.log 2>&1 &
 }
 
 
-exposeAstroshop(){
+_exposeAstroshop(){
   printInfo "Exposing Astroshop in your dev.container"
   nohup kubectl port-forward service/astroshop-frontendproxy 8080:8080  -n astroshop --address="0.0.0.0" > /tmp/kubectl-port-forward.log 2>&1 &
 }
@@ -527,21 +525,21 @@ exposeMkdocs(){
 }
 
 
-exposeLabguide(){
+_exposeLabguide(){
   printInfo "Exposing Lab Guide in your dev.container"
   cd $CODESPACE_VSCODE_FOLDER/lab-guide/
   nohup node bin/server.js --host 0.0.0.0 --port 3000 > /dev/null 2>&1 &
   cd -
 }
 
-buildLabGuide(){
+_buildLabGuide(){
   printInfoSection "Building the Lab-guide in port 3000"
   cd $CODESPACE_VSCODE_FOLDER/lab-guide/
   node bin/generator.js
   cd -
 }
 
-deployAstroshop(){
+_deployAstroshop(){
   printInfoSection "Deploying Astroshop"
 
   # read the credentials and variables
@@ -584,6 +582,7 @@ deleteCodespace(){
   printWarn "Warning! Codespace $CODESPACE_NAME will be deleted, the connection will be lost in a sec... " 
   gh codespace delete --codespace "$CODESPACE_NAME" --force
 }
+
 
 showOpenPorts(){
   sudo netstat -tulnp

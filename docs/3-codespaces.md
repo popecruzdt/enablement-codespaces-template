@@ -1,18 +1,14 @@
-# Codespaces
 --8<-- "snippets/3-codespaces.js"
-
-## 1. Launch Codespace
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/dynatrace-wwse/enablement-live-debugger-bug-hunting){target="_blank"}
 
-
+TODO: Sizing & secrets you need
 ## 1.1 Codespaces configuration
-
 !!! tip "Branch, Machine sizing & secrets"
     - Branch
         - select the **main** branch
     - Machine sizing
-        - As a machine type select **4-core**
+        - As a machine type select **2-core**
     - Secrets (enter your credentials within the following variables)
         - DT_TENANT
         - DT_OPERATOR_TOKEN
@@ -24,11 +20,6 @@ We know your time is very valuable. This codespace takes around 6 minutes to be 
 
 **k9s kubectl helm node jq python3 gh**
 
-While the Codespace is being set up for you, [here is a 6 minute read about powerful use cases beyond live debugging](https://www.dynatrace.com/news/blog/5-powerful-use-cases-beyond-debugging-for-dynatrace-live-debugger/){target="_blank"}
-in our Dynatrace blog.
-
-
-
 ![Codespaces installing](img/codespaces_installing.png)
 
 ## 3. Explore what has been deployed
@@ -38,9 +29,8 @@ Your Codespace has now deployed the following resources:
 - A local Kubernetes ([kind](https://kind.sigs.k8s.io/){target="_blank"}) cluster monitored by Dynatrace, with some pre-deployed apps
   that will be used later in the demo.
 
-- After a couple of minutes, you'll see this screen in your codespaces terminal. It contains the links to the local expose labguide and the UI of the TODO application which we will Live Debug.
+- After a couple of minutes, you'll see this screen in your codespaces terminal. It contains the links to the local expose labguide and the UI of the application which we will be doing our Hands-On training.
 ![Codespaces finish](img/codespaces_finish.png)
-
 
 
 ## 4. Tips & Tricks
