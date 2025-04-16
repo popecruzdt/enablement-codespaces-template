@@ -54,15 +54,8 @@ The apps MKdocs and TODO app are being exposed in the devcontainer to your local
 
 
 ### Exposing the App
-The todo app is being exposed via `kubectl port-forward ...` if the container is stopped and started again or if you delete/recicle the pod the port-forwarding process might crash. You can easily see what is being exposed by typing the function `showOpenPorts` 
 
-```bash
-showOpenPorts(){
-  sudo netstat -tulnp
-}
-```
-
-and to expose the TODO app, type `exposeTodoApp`, 
+The todoApp is already exposed via NodePort in the port 30100, if you want to expose it in another port like the one defined 8080 in the service, then type and to expose the TODO app, type `exposeTodoApp`, 
 
 ```bash
 exposeTodoApp(){
@@ -70,6 +63,17 @@ exposeTodoApp(){
   nohup kubectl port-forward service/todoapp 8080:8080  -n todoapp --address="0.0.0.0" > /tmp/kubectl-port-forward.log 2>&1 &
 }
 ```
+
+### Showing open ports in the container
+There is a helper function loaded in the shell to see the open ports in the dev.container.
+
+```bash
+showOpenPorts(){
+  sudo netstat -tulnp
+}
+```
+
+
 <div class="grid cards" markdown>
-- [Let's start our Bug hunting quest:octicons-arrow-right-24:](4-content.md)
+- [Let's start our enablement:octicons-arrow-right-24:](4-content.md)
 </div>
