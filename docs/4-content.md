@@ -15,7 +15,7 @@ All the MD files are under the **docs** folder. In the main README.md file you w
 
 Visit this page for the reference on using MKDocs markdown:
 
-https://squidfunk.github.io/mkdocs-material/reference/
+[https://squidfunk.github.io/mkdocs-material/reference/](https://squidfunk.github.io/mkdocs-material/reference/)
 
 
 ### Snippets

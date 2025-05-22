@@ -9,5 +9,5 @@ In this README you should add a brief description of the project. What will the 
 </p>
 
 Ready to learn how to create an enablement using codespaces? 
-## [👨‍🏫 Learn how to create enablements in Codespaces!](https://dynatrace-wwse.github.io/enablement-codespace-template)
+## [👨‍🏫 Learn how to create enablements in Codespaces!](https://dynatrace-wwse.github.io/enablement-codespaces-template)
 

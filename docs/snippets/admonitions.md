@@ -43,37 +43,12 @@
 
 ---
 
-!!! cross "Cross"
-    This is Crossed out
-
----
-
-!!! fail "Fail"
-    This is fail
-
----
-
-!!! help "Help"
-    This is a help 
-
----
-
-!!! important "Important"
-    This is important 
-
----
-
-!!! hint "Hint"
-    This is a hint 
-
----
-
 !!! Example "This is an Example admonition"
     This is an example
 
 ---
 
-!!! bug "This is a bug"
+??? bug "This is a bug and is collapsable"
     This is a bug
 
 
