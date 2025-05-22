@@ -11,6 +11,12 @@ In here you put your enablement content after Codespaces has been started and ev
 All the MD files are under the **docs** folder. In the main README.md file you want to give an intro on what the tutorial is about, being very short and to the point. If you add images there you reference them to doc/img folder.
 
 
+## MKDocs reference
+
+Visit this page for the reference on using MKDocs markdown:
+
+https://squidfunk.github.io/mkdocs-material/reference/
+
 
 ### Snippets
 

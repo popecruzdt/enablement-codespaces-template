@@ -56,6 +56,34 @@ printGreeting(){
   bash $CODESPACE_VSCODE_FOLDER/.devcontainer/util/greeting.sh
 }
 
+waitForPod() {
+  # Function to filter by Namespace and POD string, default is ALL namespaces
+  # If 2 parameters then the first is Namespace the second is Pod-String
+  # If 1 parameters then Namespace == all-namespaces the first is Pod-String
+  if [[ $# -eq 2 ]]; then
+    namespace_filter="-n $1"
+    pod_filter="$2"
+  elif [[ $# -eq 1 ]]; then
+    namespace_filter="--all-namespaces"
+    pod_filter="$1"
+  fi
+  RETRY=0
+  RETRY_MAX=60
+  # Get all pods, count and invert the search for not running nor completed. Status is for deleting the last line of the output
+  CMD="kubectl get pods $namespace_filter 2>&1 | grep -c -E '$pod_filter'"
+  printInfo "Verifying that pods in \"$namespace_filter\" with name \"$pod_filter\" is scheduled in a workernode "
+  while [[ $RETRY -lt $RETRY_MAX ]]; do
+    pods_running=$(eval "$CMD")
+    if [[ "$pods_running" != '0' ]]; then
+      printInfo "\"$pods_running\" pods are running on \"$namespace_filter\" with name \"$pod_filter\" exiting loop."
+      break
+    fi
+    RETRY=$(($RETRY + 1))
+    printWarn "Retry: ${RETRY}/${RETRY_MAX} - No pods are running on  \"$namespace_filter\" with name \"$pod_filter\". Wait 10s for $pod_filter PoDs to be scheduled..."
+    sleep 10
+  done
+}
+
 # shellcheck disable=SC2120
 waitForAllPods() {
   # Function to filter by Namespace, default is ALL
@@ -432,7 +460,11 @@ dynatraceDeployOperator() {
   if [ -n "${DT_TENANT}" ]; then
     # Deploy Operator
 
-    deployOperatorViaHelm
+    FIXME: HELM Deployment fails
+    deployOperatorViaKubectl
+
+    waitForPod dynatrace activegate
+
     waitForAllPods dynatrace
 
     #FIXME: Add Ingress Nginx instrumentation and always expose in a port so all apps have RUM regardless of technology
@@ -465,6 +497,26 @@ generateDynakube(){
     
     # Create Dynakube for ApplicationMonitoring
     sed -e 's~MONITORINGMODE:~applicationMonitoring: {}:~' $CODESPACE_VSCODE_FOLDER/.devcontainer/yaml/gen/dynakube-skel.yaml > $CODESPACE_VSCODE_FOLDER/.devcontainer/yaml/gen/dynakube-applicationmonitoring.yaml
+
+}
+
+deployOperatorViaKubectl(){
+
+  saveReadCredentials
+  API="/api"
+  DT_API_URL=$DT_TENANT$API
+  
+  # Read the actual hostname in case changed during instalation
+  CLUSTERNAME=$(hostname)
+
+  kubectl create namespace dynatrace
+
+  kubectl apply -f https://github.com/Dynatrace/dynatrace-operator/releases/download/v1.5.1/kubernetes-csi.yaml
+
+  # Save Dynatrace Secret
+  kubectl -n dynatrace create secret generic dev-container --from-literal="apiToken=$DT_OPERATOR_TOKEN" --from-literal="dataIngestToken=$DT_INGEST_TOKEN"
+
+  generateDynakube
 
 }
 
