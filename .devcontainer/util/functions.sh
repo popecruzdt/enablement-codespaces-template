@@ -406,10 +406,10 @@ deployCloudNative() {
 
     printInfo "Log capturing will be handled by the Host agent."
     # We wait for 5 seconds for the pods to be scheduled, otherwise it will mark it as passed since the pods have not been scheduled
-    sleep 5
-    waitForAllPods dynatrace
-    #if the app needs the AG or OS agent for some reason, then you'll need to wait for AG/OS to be ready, this function does that.
-    #waitForAllReadyPods dynatrace
+    waitForPod dynatrace activegate
+    
+    #FIXME: Verify dependency of AG and OS being ready.
+    waitForAllReadyPods dynatrace
   else
     printInfo "Not deploying the Dynatrace Operator, no credentials found"
   fi
@@ -553,7 +553,7 @@ deployTodoApp(){
   # Define the NodePort to expose the app from the Cluster
   kubectl patch service todoapp --namespace=todoapp --type='json' --patch='[{"op": "replace", "path": "/spec/ports/0/nodePort", "value":30100}]'
 
-  printInfoSection "TodoApp is available via NodePort=30080"
+  printInfoSection "TodoApp is available via NodePort=30100"
 
 }
 
