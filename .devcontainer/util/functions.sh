@@ -451,7 +451,7 @@ uninstallDynatrace() {
 # shellcheck disable=SC2120
 dynatraceDeployOperator() {
 
-  printInfoSection "Deploying Dynatrace Operator via Helm."
+  printInfoSection "Deploying Dynatrace Operator"
   # posssibility to load functions.sh and call dynatraceDeployOperator A B C to save credentials and override
   # or just run in normal deployment
   saveReadCredentials $@
@@ -462,8 +462,6 @@ dynatraceDeployOperator() {
 
     FIXME: HELM Deployment fails
     deployOperatorViaKubectl
-
-    waitForPod dynatrace activegate
 
     waitForAllPods dynatrace
 
@@ -501,6 +499,8 @@ generateDynakube(){
 }
 
 deployOperatorViaKubectl(){
+
+  printInfoSection "Deploying Operator via kubectl"
 
   saveReadCredentials
   API="/api"
@@ -554,7 +554,6 @@ deployTodoApp(){
   kubectl patch service todoapp --namespace=todoapp --type='json' --patch='[{"op": "replace", "path": "/spec/ports/0/nodePort", "value":30100}]'
 
   printInfoSection "TodoApp is available via NodePort=30100"
-
 }
 
 exposeApp(){
