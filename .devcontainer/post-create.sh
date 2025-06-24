@@ -9,10 +9,10 @@ setupAliases
 
 createKindCluster
 
-#installK9s
+installK9s
 
 #TODO: BeforeGoLive: uncomment this. This is only needed for professors to have the Mkdocs live in the container
-#installMkdocs
+installMkdocs
 
 # Dynatrace Credentials are read and saved as a configmap for ease of use
 #dynatraceEvalReadSaveCredentials
@@ -26,7 +26,7 @@ createKindCluster
 
 # In here you deploy the Application you want
 # The TODO App will be deployed as a sample
-#deployTodoApp
+deployTodoApp
 
 # The Astroshop keeping changes of demo.live needs certmanager
 #certmanagerInstall
