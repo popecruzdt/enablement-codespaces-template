@@ -1,16 +1,33 @@
---8<-- "snippets/getting-started.js"
---8<-- "snippets/grail-requirements.md"
+--8<-- "snippets/send-bizevent/2-getting-started.js"
 
-## 1. Prerequisites before launching the Codespace
-In here you place the prerequisites and everything that is needed before launching the codespace.
+<!--TODO: Update requirements -->
+--8<-- "snippets/requirements.md"
 
-As a Professor I highly recommend to install VSCode locally and always open the devcontainer from it, specially since we'll be using some plugins for enhancing the productivity. 
+## Prerequisites
 
+You will need full administrator access to a Dynatrace SaaS tenant with a DPS license.
 
-!!! tip "Let's launch the Codespace"
-    Now we are ready to launch the Codespace!
+<!--TODO: Update prerequisite bulleted list -->
+* Prerequisite 1
+* Prerequisite 2
 
+<!--TODO: Update prerequisite details -->
+### Prerequisite 1
+
+Prerequisite 1 Details
+
+![Screenshot](./img/screenshot.png)
+
+### Prerequisite 2
+
+Prerequisite 2 Details
+
+![Screenshot](./img/screenshot.png)
+
+## Continue
+
+In the next section, we'll launch our Codespaces instance.
 
 <div class="grid cards" markdown>
-- [Let's launch Codespaces:octicons-arrow-right-24:](3-codespaces.md)
+- [Continue to Codespaces:octicons-arrow-right-24:](3-codespaces.md)
 </div>
