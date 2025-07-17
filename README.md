@@ -1,13 +1,20 @@
-# Enablement Codespaces Template 
+<!--TODO: Update Lab Name -->
+# Lab Name
 
-This is a template so you as a professor can create fun and interesting enablements in no time.
+## Lab Overview
+<!--TODO: Update Lab Overview -->
+During this hands-on training lab, ...
 
-In this README you should add a brief description of the project. What will the student learn, which technologies and/or solutions. 
+Lab tasks:
 
-<p align="center">
-<img src="docs/img/dt_professors.png" alt="Alt text" width="500"/>
-</p>
+1. Task 1
+  - Task Step or Detail
+2. Task 2
+3. Task 3
+10. Clean up GitHub Codespaces instance
 
-Ready to learn how to create an enablement using codespaces? 
-## [👨‍🏫 Learn how to create enablements in Codespaces!](https://dynatrace-wwse.github.io/enablement-codespaces-template)
+Ready to learn lab topic?
+
+<!--TODO: Update Lab Guide URL -->
+## [View the Lab Guide](https://dynatrace-wwse.github.io/repository-name)
 
